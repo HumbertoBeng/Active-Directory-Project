@@ -307,6 +307,93 @@ Image 39
 
 
 
+### Step 3.- Installing and Configuring Active Directory
+
+In this step we are going to be Installing and Configuring Active Directory in our Windows Server, then we'll promoted to be a Domain Controller and at the end we'll configure our target machine to join the Domain.
+
+3.1.- Installing Active Diractory in our Server
+
+So to start the installation of Active Directory, we are gonna need to go to our Windows Server Machine and Open "Server Manager". Once inside the program, we are gonna look for the option "Manage" at the top right corner and then click "Add Roles and Features". Refer to image 40.
+
+![image](https://github.com/user-attachments/assets/c9b5da5b-1328-4567-a88a-75076922c222)
+Image 40
+
+Now a window will appear, we need to click next in the first part, then in "Installation Type" we need to make sure to select the option called "Role-based or feature-based installation" and then select Next. In the Server Selection is where all the servers we have would appear, but since we are only using one, only that would be showed.  section we would need to click Next again. In the "Server Roles" section of the installation wizard, we are going to need to check the "Active Directory Domain Services, a window will appear and we just need to click "Add Features". Once we've added the features, we can just go ahead and click Next in the next sections and at the end click Install. Refer to image 41.
+
+![image](https://github.com/user-attachments/assets/2ac96af0-523a-4fec-a90a-54d9d7cd2337)
+Image 41
+
+
+What we want to do next is to close the installation wizard and go to the main page of the Server Manager. Then at the top we need to click the Flag with a warning icon next to it, this is the notification button. Once we've open it a message of "Post-deployment Configuration" would appear with an option highlighted called "Promote this server to a domain controller" and we need to click it. Refer to image 42. 
+
+![image](https://github.com/user-attachments/assets/33ace5e3-1527-468b-a5df-a542a4f153da)
+Image 42
+
+
+A new window will appear. To start configuring our server as a Domain Controller, in the first section called "Deployment Configuration" we need to select the "Add a new forest" option, this is because we want to create a brand new domain. As for the Domain Name, we can name it however we want. In this case I'm going to name it csbarista.local. The Domain Name must have a top level domain, so it can't be just "csbarista", it needs to be "csbarista.*something*". once we've decided which name we want our server to have, click Next. Refer to image 43.
+
+![image](https://github.com/user-attachments/assets/43c487a8-daeb-4c90-ab20-e131f36b563d)
+Image 43
+
+
+In the next section leave everything default and put it a super secure password and then keep clicking Next until the "Paths" section. Here are the paths used to store our database file named NTDS.DIT which contains everything from the Active Directory, including password hashes. Moving forward, just keep clicking Next until you get the Install button. Refer to image 44.
+
+![image](https://github.com/user-attachments/assets/34cdc710-5d12-42ba-9739-c082c51d7698)
+Image 44
+
+Once the installation finishes the server is going to restart.
+
+
+Now that the server has restarted and applied the configurations, noticed that that a new user has appeared in the logging screen. This means that we successfully promoted our server to a Domain Controller. The next step would be creating some new users.
+
+In our Server Manager, we are going to select Tools in the top right corner and then select "Active Directory Users and Computers". Refer to image 45.
+
+![image](https://github.com/user-attachments/assets/7d177a6a-2131-4cc6-9fe2-50b61a695531)
+Image 45
+
+This is where we can create new objects such as users, groups and many more. Now go ahead and expand our Domain in the left part of the window. The folder called "Builtin" contains groups that have been automatically created by Active Directory. To learn more of what each group has permissions to, we can just go ahead and double click any group. The folder named "Users" contains a list of Users and some additional groups. Refer to image 46.
+
+![image](https://github.com/user-attachments/assets/c5b0deed-d78b-4090-87bf-2be7eeda393e)
+Image 46
+
+Now we are going to create a "Organization" within our Active Directory, to do that we need to right click our Domain and go to "New" and then select "Organizational Unit". Refer to image 47
+
+![image](https://github.com/user-attachments/assets/d0a4f8fe-51c0-43db-abb0-ec9aef03e069)
+Image 47
+
+We are going to name it "IT" then click on "OK". The new organization will appear at the bottom of the list displayed from our Domain. Within this Organization we need to right click, select "New" and then "User". This new user is going to be called Karin Thornfield, her username is going to be KThorn and then click Next. As for the password we are going to type a super secure one. Finally click "Finish". Once the new user is created is going to appear in the IT organization. Refer to image 48.
+
+![image](https://github.com/user-attachments/assets/518b72cd-3a89-4625-bb07-f06751d6a201)
+Image 48
+
+
+Next we are going to create another "Organization" called HR and then create another user.
+
+
+3.2.- Configuring the Target Machine to join our Domain
+
+To start configuring our Target Machine, we need to go to the search bar en search for "PC" and right click it and select "Properties". Inside the settings window, we can scroll down until we see an option called "Advanced System Settings". Then select the "Computer Name" tab and click "Change" and make sure to select "Domain". In the "Domain" section we are going to type the name of our Domain, the same we created earlier. Refer to image 49
+
+![image](https://github.com/user-attachments/assets/ddc96bb0-f00a-4a80-a101-f7070bfb6382)
+Image 49
+
+An error window will be displayed because our Target Machine does not know how to resolve the Domain, so to fix it, we need to go to our Network Adapter in the bottom right corner of our screen, right click it and select "Open Network Internet settings". Once inside the network settings window, Select "Change adapter options", then right click our adapter, select "Properties" and then double click "Internet Protocol Version 4 (TCP/IPv4)". As we can see, previously we typed 8.8.8.8 as our Preferred DNS Server. We want to change it to the IP of our Windows Server. Refer to image 50
+
+![image](https://github.com/user-attachments/assets/c935edc0-e8f6-436c-b001-2c18d3db6665)
+Image 50
+
+Now that we've changed the DNS Server IP, we can try to add the Target Machine again to a Domain. Use a Username and a Password to join the Domain we created. After you enter a Username and Password it will prompt you to restart.
+
+
+After the restart, we now have an option to add a new user in the logging screen. Here we can use one of the User we created in the Server to login. Refer to image 51.
+
+![image](https://github.com/user-attachments/assets/92cd7181-d34e-4316-a92d-cae80579fac8)
+Image 51
+
+After logging in with a User we have successfully added our Target Machine to our Domain.
+
+
+
 
 
 
