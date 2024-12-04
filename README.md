@@ -395,13 +395,58 @@ After logging in with a User we have successfully added our Target Machine to ou
 
 
 
+### Step 4.- Generating Telemetry
+
+4.1.- Preparing Kali Linux Virtual Machine
+
+To generate Telemetry we are going to spin up a Kali Linux Virtual Machine.
+
+First of all we are going to need to assign the IP we have in our diagram to our Kali VM. To do that we are going to right click the Network symbol in the top right corner of our screen and then select "Edit Connections...". Refer to image 52
+
+![image](https://github.com/user-attachments/assets/82c62fe3-5a45-40be-9b29-07d3fc1c6ffe)
+Image 52
+
+Once inside we need to select our network adapter, then in the bottom left corner of the window we are going to select the cog button. Next we need to go to Ipv4 Settings. We need to change the "Method" from Automatic to manual so it can abilitate the option to add the IP address. After that click Add and finally type the IP address. At the end just click save. Refer to image 53
+
+![image](https://github.com/user-attachments/assets/7f93f376-b326-4fa1-a2d0-058c95e60c25)
+Image 53
+
+For the changes to be applied, we need to click the network icon again and disconnect and connect.
+
+Finally we need to update and upgrade our repository by typing "sudo apt-get update && sudo apt-get upgrade -y".
 
 
 
+4.2.- Initiating the attack
+
+First we need to create a new directory called AD-Project and to do that, we can use the command "mkdir AD-Project". All the files we will create and use will be saved into this directory.
+
+For the attack we'll be using a tool called Crowbar. Crowbar (formally known as Levye) is a brute forcing tool that can be used during penetration tests. It was developed to brute force some protocols in a different manner according to other popular brute forcing tools. 
+
+To install Crowbar we can head to the terminal and type the following command: "sudo apt-get install -y crowbar". After the installation is finished we are going to be using a Word List which is included in the kali linux machine called "RockYou" that can be found in /usr/share/wordlists. Refer to image 54.
+
+![image](https://github.com/user-attachments/assets/4639b43a-ea22-47a3-85e0-8d6434160bd5)
+Image 54
+
+To use it we are going the RockYou file we need to unzip it with the command "sudo gunzip rockyou.txt.gz".
+
+After unzipping the rockyou.txt file lets copy it and move it to our AD-Project directory we created earlier. we should be able to do that with the command "cp rockyou.txt ~/Desktop/AD-Project/".cd 
+
+Going further we can check the size of the rockyou.txt file by using "ls -lh" command. As we can see is a rather heavy file, but for the sake of this project we are not going to be using the whole list. Refer to image 55.
+
+![image](https://github.com/user-attachments/assets/8f748a0b-3183-4595-98ca-51eeb8e9aa76)
+Image 55
 
 
+To select only a part of the rockyou.txt file and then output it into another .txt file, we can use the command "head -n 20 rockyou.txt". The head command allows us to read the first lines of a file, with the -n flag we can specify how many lines to show of said file. refer to image 56.
+
+![image](https://github.com/user-attachments/assets/d67b1e28-4331-41c5-8ea4-00a16b35a953)
+Image 56
+
+For the sake of the project we are going to edit in the password we set for the user we created in our server. We can do so by typing "nano passwords.txt" and typing it. To save the changes we can use CTRL + X, hit "Y" to save the changes and finally press Enter to exit the editor.
 
 
+For the next step we want to enable Remote Desktop
 
 
 
