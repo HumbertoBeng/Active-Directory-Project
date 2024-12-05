@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/0682bdd5-7937-4a5f-be25-d07d90843779)# Active-Directory-Project
+![image](https://github.com/user-attachments/assets/25a7b37e-7b7c-43cf-b556-abfd0353f028)![image](https://github.com/user-attachments/assets/c839a575-6f19-48e3-9f68-92a79876e21d)![image](https://github.com/user-attachments/assets/e1fcbc15-178d-458b-a9ff-6cb0904a2262)![image](https://github.com/user-attachments/assets/0682bdd5-7937-4a5f-be25-d07d90843779)# Active-Directory-Project
 
 ## Objective
 
@@ -443,10 +443,30 @@ To select only a part of the rockyou.txt file and then output it into another .t
 ![image](https://github.com/user-attachments/assets/d67b1e28-4331-41c5-8ea4-00a16b35a953)
 Image 56
 
-For the sake of the project we are going to edit in the password we set for the user we created in our server. We can do so by typing "nano passwords.txt" and typing it. To save the changes we can use CTRL + X, hit "Y" to save the changes and finally press Enter to exit the editor.
+For the sake of the project we are going to edit in the password we set for the user we created in our server so that we can generate Telemetry. We can do so by typing "nano passwords.txt" and typing it. To save the changes we can use CTRL + X, hit "Y" and finally press Enter to exit the editor.
 
 
-For the next step we want to enable Remote Desktop
+For the next step we want to enable Remote Desktop in our Target Machine, to do that we need to search for PC in the search bar, right click it and select Properties. Once inside the settings menu we need to scroll down and select "Advanced system settings". It will ask us to login as Administrator so we type the user and password. Now that we are inside the System properties window, we need to go to the "Remote" tab and inside select "Allow remote connection to this computer". Refer to image 57.
+
+![image](https://github.com/user-attachments/assets/3e58ebe6-8325-4c28-800d-5a76384a56b0)
+Image 58
+
+Next we want to add the users we created in our windows server. Click on "Select Users..." and add the users mentioned before. Once we have confirmed that the users are correct we can go ahead and click "OK" and then hit "Apply". Refer to image 59.
+
+![image](https://github.com/user-attachments/assets/260077f2-3623-4b69-8f5b-3ab54c31b029)
+Image 59
+
+4.2.1.- The Attack
+
+In our Kali Linux machine we are going to open the terminal and start using Crowbar. To start the attack, we first need to go to the directory where we created the "passwords.txt" file. Then to initiate the attack we are going to use the following command: "crowbar -b rdp -u [Name of the user in the Target Machien] -C passwords.txt -s 192.168.10.100/32". The -b indicates the protocol we are going to be targeting. The -u is for the user. -C is for referencing the list of passwords we are going to be using for the brute force attack. -s is the IP of the target machine. Refer to image 60.
+
+![image](https://github.com/user-attachments/assets/22d961d6-4a91-4706-8bdb-95fc20ac68f6)
+Image 60
+
+
+After we've run the command we can go ahead and access Splunk to see what kind of data was generated after the successful attack.
+
+
 
 
 
