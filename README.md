@@ -1,4 +1,4 @@
-![image](https://github.com/user-attachments/assets/25a7b37e-7b7c-43cf-b556-abfd0353f028)![image](https://github.com/user-attachments/assets/c839a575-6f19-48e3-9f68-92a79876e21d)![image](https://github.com/user-attachments/assets/e1fcbc15-178d-458b-a9ff-6cb0904a2262)![image](https://github.com/user-attachments/assets/0682bdd5-7937-4a5f-be25-d07d90843779)# Active-Directory-Project
+  ![image](https://github.com/user-attachments/assets/25a7b37e-7b7c-43cf-b556-abfd0353f028)![image](https://github.com/user-attachments/assets/c839a575-6f19-48e3-9f68-92a79876e21d)![image](https://github.com/user-attachments/assets/e1fcbc15-178d-458b-a9ff-6cb0904a2262)![image](https://github.com/user-attachments/assets/0682bdd5-7937-4a5f-be25-d07d90843779)# Active-Directory-Project
 
 ## Objective
 
@@ -468,6 +468,55 @@ After we've run the command we can go ahead and access Splunk to see what kind o
 
 
 
+4.3.- Investigating the events generated
+
+Once inside Splunk, we can go to Apps and click "Search & Rerporting" and we are going to use the term "index=endpoint" as this is the name of the Index we created and in which both our server and target machines events are sent to. Since we now which user was target in the attack we can just type the user in the search bar. Refer to image 61.
+
+![image](https://github.com/user-attachments/assets/9ccec9d4-62b4-4e43-9e3a-93957cc8d912)
+Image 61
+
+In the left side of Splunk we have interesting fields that are related to the events generated in our target machine. We are going to be lookin for a field called "EventCode", here the code of every event generated in the target machine are displayed. We can search up every EventCode that appears in this field to see what each one of them means. The event that is relevant for this particular project is the EventCode of 4625. This EventCode indicates that "An account failed to log on" and as we can see in the EventCode field we have a couple of them since we ran the command for the Brute Force attack multiple times. Refer to image 62.
+
+![image](https://github.com/user-attachments/assets/35909709-c00b-400c-bebc-4eaff800d242)
+Image 62
+
+To start looking into the events with an EventCode 4625, we can just click it from the window shown before, this will modify our search terms so that we can start looking to what the Brute Force attack we generated earlier did to our Target Machine. Refer to Image 63.
+
+![image](https://github.com/user-attachments/assets/f09155fc-e7f4-4c32-bf61-6733cfad7867)
+Image 63
+
+Looking through the events we can see that each event was generated pretty mutch withtin the same time, indicating a Brute Force Attack since there is no way for a normal user to try and log on several times in such a tight time frame.
+
+Moving onto the next EventCode we want to have a look at, we have the EventCode 4624 which is pretty similar to the one before. This EventCode means that "An account was successfully logged on". To look for the Events with the EventCode 4624 we can just edit the search by changing 4625 to 4624. Looking at the last event generated, we can click on the "Show all 70 lines" to see more about this event. 
+
+Reading through this Event we can see that the last Log on was made by a Workstation named kali and an IP of 192.168.10.250, this of course belongs to our Kali machine where we performed the attack. Refer to image 64.
+
+![image](https://github.com/user-attachments/assets/0a181e78-f941-4030-8cd8-29b663982583)
+Image 64
+
+
+
+4.4.-Installing & Using Atomic Red Team
+
+Finally we are going to be using Atomic Red Team to simulate more attacks to our Target Machine. Atomic Red Team is an open source library of tests designed to test security controls and it's mapped to the MITRE ATT&CK framework.
+
+Before we install Atomic Red Team, first we need to open PowerShell with admin privileges and then run the following command: "Set-ExecutionPolicy Bypass CurrentUser". Before we start with the installation we need to set an exclusion for the entire C: drive since Windows Defender can detect and remove the files made by Atomic Red Team. To do that we can search for "Virus & Threat protection" in the search bar. Once inside we want to click in the "Virus & threat protection" option again, then select "Manage settings", scroll down and under "Exclusions" we need to select "Add or remove exclusions". Then click on "Add an exclusion" and select Folder. On the "Select Folder" window we can just look for the C: drive and Select Folder. If everything went well we should see the C: folder. Refer to image 65.
+
+![image](https://github.com/user-attachments/assets/6165fd94-2193-49fb-8714-50abc45f2be9)
+Image 65
+
+
+Now we can start Installing Atomic Red Team, to do that we need to run the following command: IEX (IWR  'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam -getAtomics.
+
+Once Atomic Red Team is installed, we can go to our C: drive and look for a folder called "AtomicRedTeam". Inside that folder we have 2 more folder, "atomics" and "invoke-atomicredteam". In the "atomics" folder there would be all the techniques IDs and this go back to the MITTRE ATT&CK framework to which this is based from. 
+
+For this example we are going to be using T1136.001 which is a tactic of Persistence where Adversaries may create a local account to maintain access to victim systems. To use the command we are going to run the following command: "Invoke-AtomicTest T1136.001". This command will simulate an event in where someone created a local account. Take a special look to the name of the user created for the simulation so that we can look for it later in Splunk. Refer to image 66.
+
+![image](https://github.com/user-attachments/assets/342911c4-1278-41fa-828e-c6a57ad9dcdf)
+Image 66
+
+
+We can use Atomic Red Team to see what kinds of attack our machine can be subjected to, in case an event in Splunk is not generated then that tells us that we are vulnerable to that kind of attack and we need to create or add security to block such attacks from happening.
 
 
 
