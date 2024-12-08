@@ -52,7 +52,7 @@ The VMs we'll be using are:
 
 First of all, to ensure we have connectio between our Virtual Machines we are going to create a NAT Network in Virtual Box
 
-##2.1.- Setting up a NAT Network in Virtual box
+## 2.1.- Setting up a NAT Network in Virtual box
 
 To start creating a NAT Network in Virtual Box we are going to go to Tools and click on the bullet point and select the Network option. Refer to image 1.
 
@@ -69,7 +69,7 @@ Following the instructions of the diagram we made before, we are going to give o
 ![image](https://github.com/user-attachments/assets/41056890-02dd-4031-9128-b6fba9aadae5)
 image 3.
 
-#2.1.1.- Adding a Virtual Machine to a NAT Network
+# 2.1.1.- Adding a Virtual Machine to a NAT Network
 
 To add a Virtual Machine to a NAT Network we are going to go to the Virtual Machine we would like to add and left click it and select the "Settings" option. Refer to image 4.
 
@@ -81,7 +81,7 @@ Once inside the Settings tab of our Virtual Machine we'll go to the "Network" se
 ![image](https://github.com/user-attachments/assets/1b05cefc-ace7-47d5-a977-1a5e616417ae)
 Image 5.
 
-##2.2.- Configuring Ubuntu Server with Splunk
+## 2.2.- Configuring Ubuntu Server with Splunk
 
 #2.2.1.- Connectivity
 First things first to start configuring our Ubuntu Server we need to check which IP does it have, so we are going to use the command "ip a". Since we checked the option of DHCP in the configuration of our NAT Network it will have an IP, but since in the first part of this project we set the IP address of the Ubuntu server to 192.168.10.10/24 we will need to change it, so to do this we'll need to edit a file to disable DHCP and change it to the IP we decided earlier.
