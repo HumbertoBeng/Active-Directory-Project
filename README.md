@@ -3,28 +3,31 @@
 ## Objective
 
 This project is aimed to create an environment using Active Directory with the objective to learn how to setup this tool and how it can manage
-Domains, Users, and machines. Also we will be using a Linux server tu create a Splunk SIEM instance to monitor the machines managed by the
-Active Directory Domain so that we can generate telemetry and learn how different attacks look like in a SIEM environment, to achieve this we will alse be using
-Kali Linux as an attacker machine using a Brute Force attack to attack the machines within the Active Directory Domain.
+Domains, Users, and machines. Also we will be using a Ubuntu server to create a Splunk SIEM instance to monitor the machines managed by the
+Active Directory Domain so that we can generate telemetry and learn how different attacks look like in a SIEM environment, to achieve this we will also be using
+Kali Linux as an attacker machine using a Crowbar as our tool for Brute Force attack to attack the machines within the Active Directory Domain. and Finally we will be using Atomic Red Team to simulate more attacks and see if Splunk can detects said attacks.
 
 
 
 ### Skills Learned
-[Bullet Points - Remove this afterwards]
 
-- Advanced understanding of SIEM concepts and practical application.
-- Proficiency in analyzing and interpreting network logs.
+- Understanding of SIEM concepts and practical application.
+- Proficiency in analyzing and interpreting event logs.
 - Ability to generate and recognize attack signatures and patterns.
-- Enhanced knowledge of network protocols and security vulnerabilities.
 - Development of critical thinking and problem-solving skills in cybersecurity.
 
 ### Tools Used
-[Bullet Points - Remove this afterwards]
 
-- Splunk SIEM
-- Sysmon
-- Active Directory
-- Atomic Red Team
+- Splunk, security information and event management solution.
+- Sysmon, monitoring tool that provides detailed information about process creations, network connections, etc.
+- Active Directory.
+- Atomic Red Team, Framework for executing atomic tests.
+- Crowbar, a brute forcing tool that can be used during penetration tests.
+
+## Table of contents
+- [Designing a Diagram](#)
+
+
 
 ## Steps
 
@@ -49,7 +52,7 @@ The VMs we'll be using are:
 
 First of all, to ensure we have connectio between our Virtual Machines we are going to create a NAT Network in Virtual Box
 
-2.1.- Setting up a NAT Network in Virtual box
+##2.1.- Setting up a NAT Network in Virtual box
 
 To start creating a NAT Network in Virtual Box we are going to go to Tools and click on the bullet point and select the Network option. Refer to image 1.
 
@@ -66,7 +69,7 @@ Following the instructions of the diagram we made before, we are going to give o
 ![image](https://github.com/user-attachments/assets/41056890-02dd-4031-9128-b6fba9aadae5)
 image 3.
 
-2.1.1.- Adding a Virtual Machine to a NAT Network
+#2.1.1.- Adding a Virtual Machine to a NAT Network
 
 To add a Virtual Machine to a NAT Network we are going to go to the Virtual Machine we would like to add and left click it and select the "Settings" option. Refer to image 4.
 
@@ -78,9 +81,9 @@ Once inside the Settings tab of our Virtual Machine we'll go to the "Network" se
 ![image](https://github.com/user-attachments/assets/1b05cefc-ace7-47d5-a977-1a5e616417ae)
 Image 5.
 
-2.2.- Configuring Ubuntu Server with Splunk
+##2.2.- Configuring Ubuntu Server with Splunk
 
-2.2.1.- Connectivity
+#2.2.1.- Connectivity
 First things first to start configuring our Ubuntu Server we need to check which IP does it have, so we are going to use the command "ip a". Since we checked the option of DHCP in the configuration of our NAT Network it will have an IP, but since in the first part of this project we set the IP address of the Ubuntu server to 192.168.10.10/24 we will need to change it, so to do this we'll need to edit a file to disable DHCP and change it to the IP we decided earlier.
 
 So with this in mind, we'll head to the directory of /etc/netplan with the command "cd", after we click enter to the command, we'll look for a file called "00-installer-config.yaml". Sometimes this file would not be found in this directory, so for such cases we can just create said file by using "sudo nano 00-installer-config-yaml". This command will allow us to create the file and at the same time open a text editor to edit the content of said file.
@@ -104,7 +107,7 @@ Next we can see if the changes were applied by using the "ip a" command again. R
 Image 8
 
 
-2.2.2.- Installing Splunk
+#2.2.2.- Installing Splunk
 
 To install Splunk in an Ubuntu server we will need to head to the Splunk and create an account to access to the downloads.
 
@@ -157,7 +160,7 @@ Image 15.
 
 Accessing the Directory of "bin" would allow us to see all the binaries used by Splunk. Once inside the "bin" Directory we will use the "./splunk" binary and use it along the command "start". After reading the terms and conditions we select "Yes" and set the administrator username the same as our original user and then a super secure password. Finally once the process has finished we use "exit" to exit the splunk user. After returning to our original user we enter the "/opt/splunk/bin" Directory and run the following command: "sudo ./splunk enable boot-start -user splunk". This command allow the server to start Splunk with the user "Splunk" everytime the server reboots.
 
-2.3.- Configuring the target machine and the Windows Server machine
+##2.3.- Configuring the target machine and the Windows Server machine
 
 We are going to be configuring our Windows 10 machine as the target machine for this project. The instructions for the Windows Server machine will not be written here since they are pretty much the same as the one for our Windows 10 machine.
 
@@ -189,7 +192,7 @@ Once we've saved the configuration, we can make sure if the changes were saved b
 ![image](https://github.com/user-attachments/assets/7e429538-4693-4fd3-b3ff-87571202c220)
 Image 20
 
-2.3.1.- Installing Splunk Forwarder and Sysmon 
+#2.3.1.- Installing Splunk Forwarder and Sysmon 
 
 2.3.1.1.- Installing Splunk Forwarder
 
@@ -248,7 +251,7 @@ So following the installation we are going to open PowerShell with administrativ
 ![image](https://github.com/user-attachments/assets/2ede4836-763e-4d7f-8023-b3271f672ad3)
 Image 30
 
-2.3.2.- Instructing our Splunk Forwarder
+#2.3.2.- Instructing our Splunk Forwarder
 
 Now that we have installed both Splunk Universal Forwarder and Sysmon, we need to create a file that will instruct our Universal Forwarder which data needs to be send over to our Splunk Server, and to do that we must configure a file called "inputs.conf" which is located in "C:\Program Files\SplunkUniversalForwarder\etc\system\default". Refer to image 31.
 
@@ -275,7 +278,7 @@ For the changes to be applied we'll need to restart the service, and to do that 
 ![image](https://github.com/user-attachments/assets/bbb61995-93cb-4b94-9b10-95500ce16e6a)
 Image 35
 
-2.3.3.- Configuring Splunk SIEM
+#2.3.3.- Configuring Splunk SIEM
 
 We want to configure our Splunk SIEM to see the telemetry generated by our target machine, to do that we can open a web browser and type the IP of our Splunk server with the port 8000 so we can access to Splunk.
 Image 36.
