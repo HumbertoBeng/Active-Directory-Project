@@ -52,7 +52,7 @@ The VMs we'll be using are:
 
 First of all, to ensure we have connectio between our Virtual Machines we are going to create a NAT Network in Virtual Box
 
-## 2.1.- Setting up a NAT Network in Virtual box
+#### 2.1.- Setting up a NAT Network in Virtual box
 
 To start creating a NAT Network in Virtual Box we are going to go to Tools and click on the bullet point and select the Network option. Refer to image 1.
 
@@ -69,7 +69,7 @@ Following the instructions of the diagram we made before, we are going to give o
 ![image](https://github.com/user-attachments/assets/41056890-02dd-4031-9128-b6fba9aadae5)
 image 3.
 
-# 2.1.1.- Adding a Virtual Machine to a NAT Network
+##### 2.1.1.- Adding a Virtual Machine to a NAT Network
 
 To add a Virtual Machine to a NAT Network we are going to go to the Virtual Machine we would like to add and left click it and select the "Settings" option. Refer to image 4.
 
