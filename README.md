@@ -1,4 +1,4 @@
-  ![image](https://github.com/user-attachments/assets/25a7b37e-7b7c-43cf-b556-abfd0353f028)![image](https://github.com/user-attachments/assets/c839a575-6f19-48e3-9f68-92a79876e21d)![image](https://github.com/user-attachments/assets/e1fcbc15-178d-458b-a9ff-6cb0904a2262)![image](https://github.com/user-attachments/assets/0682bdd5-7937-4a5f-be25-d07d90843779)# Active-Directory-Project
+# Active-Directory-Project
 
 ## Objective
 
