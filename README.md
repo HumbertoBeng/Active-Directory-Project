@@ -319,34 +319,34 @@ Image 39
 
 ### Step 3.- Installing and Configuring Active Directory
 
-In this step we are going to be Installing and Configuring Active Directory in our Windows Server, then we'll promoted to be a Domain Controller and at the end we'll configure our target machine to join the Domain.
+In this step we are going to be Installing and Configuring Active Directory in our Windows Server, then we'll promote it to be a Domain Controller. At the end we'll configure our target machine to join the Domain.
 
-3.1.- Installing Active Diractory in our Server
+#### 3.1.- Installing Active Diractory in our Server
 
-So to start the installation of Active Directory, we are gonna need to go to our Windows Server Machine and Open "Server Manager". Once inside the program, we are gonna look for the option "Manage" at the top right corner and then click "Add Roles and Features". Refer to image 40.
+So to start the installation of Active Directory, we are gonna need to go to our Windows Server Machine and Open **Server Manager**. Once inside the program, we are gonna look for the option *Manage* at the top right corner and then click *Add Roles and Features*. Refer to image 40.
 
 ![image](https://github.com/user-attachments/assets/c9b5da5b-1328-4567-a88a-75076922c222)
 Image 40
 
-Now a window will appear, we need to click next in the first part, then in "Installation Type" we need to make sure to select the option called "Role-based or feature-based installation" and then select Next. In the Server Selection is where all the servers we have would appear, but since we are only using one, only that would be showed.  section we would need to click Next again. In the "Server Roles" section of the installation wizard, we are going to need to check the "Active Directory Domain Services, a window will appear and we just need to click "Add Features". Once we've added the features, we can just go ahead and click Next in the next sections and at the end click Install. Refer to image 41.
+Now a window will appear, we need to click next in the first part, then in **Installation Type** we need to make sure to select the option called *Role-based or feature-based installation* and then select Next. In the Server Selection is where all the servers we have would appear, but since we are only using one, only that would be showed. In the next section we would need to click Next again. In the *Server Roles* section of the installation wizard, we are going to need to check the *Active Directory Domain Services*, a window will appear and we just need to click *Add Features*. Once we've added the features, we can just go ahead and click Next in the next sections and at the end click Install. Refer to image 41.
 
 ![image](https://github.com/user-attachments/assets/2ac96af0-523a-4fec-a90a-54d9d7cd2337)
 Image 41
 
 
-What we want to do next is to close the installation wizard and go to the main page of the Server Manager. Then at the top we need to click the Flag with a warning icon next to it, this is the notification button. Once we've open it a message of "Post-deployment Configuration" would appear with an option highlighted called "Promote this server to a domain controller" and we need to click it. Refer to image 42. 
+What we want to do next is to close the installation wizard and go to the main page of the Server Manager. Then at the top we need to click the Flag with a warning icon next to it, this is the notification button. Once we've open it a message of *Post-deployment Configuration* would appear with an option highlighted called *Promote this server to a domain controller* and we need to click it. Refer to image 42. 
 
 ![image](https://github.com/user-attachments/assets/33ace5e3-1527-468b-a5df-a542a4f153da)
 Image 42
 
 
-A new window will appear. To start configuring our server as a Domain Controller, in the first section called "Deployment Configuration" we need to select the "Add a new forest" option, this is because we want to create a brand new domain. As for the Domain Name, we can name it however we want. In this case I'm going to name it csbarista.local. The Domain Name must have a top level domain, so it can't be just "csbarista", it needs to be "csbarista.*something*". once we've decided which name we want our server to have, click Next. Refer to image 43.
+A new window will appear. To start configuring our server as a Domain Controller, in the first section called *Deployment Configuration* we need to select the *Add a new forest* option, this is because we want to create a brand new domain. As for the Domain Name, we can name it however we want. In this case I'm going to name it csbarista.local. The Domain Name must have a top level domain, so it can't be just "csbarista", it needs to be "csbarista.*something*". once we've decided which name we want our server to have, click Next. Refer to image 43.
 
 ![image](https://github.com/user-attachments/assets/43c487a8-daeb-4c90-ab20-e131f36b563d)
 Image 43
 
 
-In the next section leave everything default and put it a super secure password and then keep clicking Next until the "Paths" section. Here are the paths used to store our database file named NTDS.DIT which contains everything from the Active Directory, including password hashes. Moving forward, just keep clicking Next until you get the Install button. Refer to image 44.
+In the next section leave everything default and type a super secure password and then keep clicking Next until the *Paths* section. Here are the paths used to store our database file named **NTDS.DIT** which contains everything from the Active Directory, including password hashes. Moving forward, just keep clicking Next until you get the Install button. Refer to image 44.
 
 ![image](https://github.com/user-attachments/assets/34cdc710-5d12-42ba-9739-c082c51d7698)
 Image 44
@@ -354,9 +354,9 @@ Image 44
 Once the installation finishes the server is going to restart.
 
 
-Now that the server has restarted and applied the configurations, noticed that that a new user has appeared in the logging screen. This means that we successfully promoted our server to a Domain Controller. The next step would be creating some new users.
+Now that the server has restarted and applied the configurations, noticed that a new user has appeared in the logging screen. This means that we successfully promoted our server to a Domain Controller. The next step would be creating some new users.
 
-In our Server Manager, we are going to select Tools in the top right corner and then select "Active Directory Users and Computers". Refer to image 45.
+In our Server Manager, we are going to select *Tools* in the top right corner and then select *Active Directory Users and Computers*. Refer to image 45.
 
 ![image](https://github.com/user-attachments/assets/7d177a6a-2131-4cc6-9fe2-50b61a695531)
 Image 45
@@ -366,21 +366,21 @@ This is where we can create new objects such as users, groups and many more. Now
 ![image](https://github.com/user-attachments/assets/c5b0deed-d78b-4090-87bf-2be7eeda393e)
 Image 46
 
-Now we are going to create a "Organization" within our Active Directory, to do that we need to right click our Domain and go to "New" and then select "Organizational Unit". Refer to image 47
+Now we are going to create an "Organization" within our Active Directory, to do that we need to right click our Domain and go to "New" and then select "Organizational Unit". Refer to image 47
 
 ![image](https://github.com/user-attachments/assets/d0a4f8fe-51c0-43db-abb0-ec9aef03e069)
 Image 47
 
-We are going to name it "IT" then click on "OK". The new organization will appear at the bottom of the list displayed from our Domain. Within this Organization we need to right click, select "New" and then "User". This new user is going to be called Karin Thornfield, her username is going to be KThorn and then click Next. As for the password we are going to type a super secure one. Finally click "Finish". Once the new user is created is going to appear in the IT organization. Refer to image 48.
+We are going to name it "IT" then click on "OK". The new organization will appear at the bottom of the list displayed from our Domain. Within this Organization we need to right click, select "New" and then "User". This new user is going to be called *Karin Thornfield*, her username is going to be *KThorn* and then click Next. As for the password we are going to type a super secure one. Finally click "Finish". Once the new user is created is going to appear in the IT organization. Refer to image 48.
 
 ![image](https://github.com/user-attachments/assets/518b72cd-3a89-4625-bb07-f06751d6a201)
 Image 48
 
-
 Next we are going to create another "Organization" called HR and then create another user.
 
 
-3.2.- Configuring the Target Machine to join our Domain
+
+#### 3.2.- Configuring the Target Machine to join our Domain
 
 To start configuring our Target Machine, we need to go to the search bar en search for "PC" and right click it and select "Properties". Inside the settings window, we can scroll down until we see an option called "Advanced System Settings". Then select the "Computer Name" tab and click "Change" and make sure to select "Domain". In the "Domain" section we are going to type the name of our Domain, the same we created earlier. Refer to image 49
 
@@ -394,7 +394,6 @@ Image 50
 
 Now that we've changed the DNS Server IP, we can try to add the Target Machine again to a Domain. Use a Username and a Password to join the Domain we created. After you enter a Username and Password it will prompt you to restart.
 
-
 After the restart, we now have an option to add a new user in the logging screen. Here we can use one of the User we created in the Server to login. Refer to image 51.
 
 ![image](https://github.com/user-attachments/assets/92cd7181-d34e-4316-a92d-cae80579fac8)
@@ -407,7 +406,7 @@ After logging in with a User we have successfully added our Target Machine to ou
 
 ### Step 4.- Generating Telemetry
 
-4.1.- Preparing Kali Linux Virtual Machine
+#### 4.1.- Preparing Kali Linux Virtual Machine
 
 To generate Telemetry we are going to spin up a Kali Linux Virtual Machine.
 
@@ -423,37 +422,38 @@ Image 53
 
 For the changes to be applied, we need to click the network icon again and disconnect and connect.
 
-Finally we need to update and upgrade our repository by typing "sudo apt-get update && sudo apt-get upgrade -y".
+Finally we need to update and upgrade our repository by typing `sudo apt-get update && sudo apt-get upgrade -y`.
 
 
 
-4.2.- Initiating the attack
+#### 4.2.- Initiating the attack
 
-First we need to create a new directory called AD-Project and to do that, we can use the command "mkdir AD-Project". All the files we will create and use will be saved into this directory.
+First we need to create a new directory called AD-Project and to do that, we can use the command `mkdir AD-Project`. All the files we will create and use will be saved into this directory.
 
 For the attack we'll be using a tool called Crowbar. Crowbar (formally known as Levye) is a brute forcing tool that can be used during penetration tests. It was developed to brute force some protocols in a different manner according to other popular brute forcing tools. 
 
-To install Crowbar we can head to the terminal and type the following command: "sudo apt-get install -y crowbar". After the installation is finished we are going to be using a Word List which is included in the kali linux machine called "RockYou" that can be found in /usr/share/wordlists. Refer to image 54.
+To install Crowbar we can head to the terminal and type the following command: `sudo apt-get install -y crowbar`. After the installation is finished we are going to be using a Word List which is included in the kali linux machine called "RockYou" that can be found in */usr/share/wordlists*. Refer to image 54.
 
 ![image](https://github.com/user-attachments/assets/4639b43a-ea22-47a3-85e0-8d6434160bd5)
 Image 54
 
-To use it we are going the RockYou file we need to unzip it with the command "sudo gunzip rockyou.txt.gz".
+To use it we are going to need to unzip it with the command `sudo gunzip rockyou.txt.gz`.
 
-After unzipping the rockyou.txt file lets copy it and move it to our AD-Project directory we created earlier. we should be able to do that with the command "cp rockyou.txt ~/Desktop/AD-Project/".cd 
+After unzipping the rockyou.txt file lets copy it and move it to our AD-Project directory we created earlier. we should be able to do that with the command `cp rockyou.txt ~/Desktop/AD-Project`. 
 
-Going further we can check the size of the rockyou.txt file by using "ls -lh" command. As we can see is a rather heavy file, but for the sake of this project we are not going to be using the whole list. Refer to image 55.
+Going further we can check the size of the rockyou.txt file by using `ls -lh` command. As we can see is a rather heavy file, but for the sake of this project we are not going to be using the whole list. Refer to image 55.
 
 ![image](https://github.com/user-attachments/assets/8f748a0b-3183-4595-98ca-51eeb8e9aa76)
 Image 55
 
 
-To select only a part of the rockyou.txt file and then output it into another .txt file, we can use the command "head -n 20 rockyou.txt". The head command allows us to read the first lines of a file, with the -n flag we can specify how many lines to show of said file. refer to image 56.
+To select only a part of the rockyou.txt file and then output it into another .txt file, we can use the command `head -n 20 rockyou.txt`. The head command allows us to read the first lines of a file, with the -n flag we can specify how many lines to show of said file. refer to image 56.
 
 ![image](https://github.com/user-attachments/assets/d67b1e28-4331-41c5-8ea4-00a16b35a953)
 Image 56
 
-For the sake of the project we are going to edit in the password we set for the user we created in our server so that we can generate Telemetry. We can do so by typing "nano passwords.txt" and typing it. To save the changes we can use CTRL + X, hit "Y" and finally press Enter to exit the editor.
+For the sake of the project we are going to edit in the password we set for the user we created in our server so that we can generate Telemetry. We can do so by typing `nano passwords.txt` and typing it. To save the changes we can use CTRL + X, hit "Y" and finally press Enter to exit the editor.
+
 
 
 For the next step we want to enable Remote Desktop in our Target Machine, to do that we need to search for PC in the search bar, right click it and select Properties. Once inside the settings menu we need to scroll down and select "Advanced system settings". It will ask us to login as Administrator so we type the user and password. Now that we are inside the System properties window, we need to go to the "Remote" tab and inside select "Allow remote connection to this computer". Refer to image 57.
@@ -466,26 +466,25 @@ Next we want to add the users we created in our windows server. Click on "Select
 ![image](https://github.com/user-attachments/assets/260077f2-3623-4b69-8f5b-3ab54c31b029)
 Image 59
 
-4.2.1.- The Attack
+##### 4.2.1.- The Attack
 
-In our Kali Linux machine we are going to open the terminal and start using Crowbar. To start the attack, we first need to go to the directory where we created the "passwords.txt" file. Then to initiate the attack we are going to use the following command: "crowbar -b rdp -u [Name of the user in the Target Machien] -C passwords.txt -s 192.168.10.100/32". The -b indicates the protocol we are going to be targeting. The -u is for the user. -C is for referencing the list of passwords we are going to be using for the brute force attack. -s is the IP of the target machine. Refer to image 60.
+In our Kali Linux machine we are going to open the terminal and start using Crowbar. To start the attack, we first need to go to the directory where we created the "passwords.txt" file. Then to initiate the attack we are going to use the following command: `crowbar -b rdp -u [Name of the user in the Target Machien] -C passwords.txt -s 192.168.10.100/32`. The -b indicates the protocol we are going to be targeting. The -u is for the user. -C is for referencing the list of passwords we are going to be using for the brute force attack. -s is the IP of the target machine. Refer to image 60.
 
 ![image](https://github.com/user-attachments/assets/22d961d6-4a91-4706-8bdb-95fc20ac68f6)
 Image 60
-
 
 After we've run the command we can go ahead and access Splunk to see what kind of data was generated after the successful attack.
 
 
 
-4.3.- Investigating the events generated
+#### 4.3.- Investigating the events generated
 
-Once inside Splunk, we can go to Apps and click "Search & Rerporting" and we are going to use the term "index=endpoint" as this is the name of the Index we created and in which both our server and target machines events are sent to. Since we now which user was target in the attack we can just type the user in the search bar. Refer to image 61.
+Once inside Splunk, we can go to Apps and click "Search & Rerporting" and we are going to use the term "index=endpoint" as this is the name of the Index we created and in which both our server and target machines events are sent to. Since we know which user was target in the attack we can just type the user in the search bar. Refer to image 61.
 
 ![image](https://github.com/user-attachments/assets/9ccec9d4-62b4-4e43-9e3a-93957cc8d912)
 Image 61
 
-In the left side of Splunk we have interesting fields that are related to the events generated in our target machine. We are going to be lookin for a field called "EventCode", here the code of every event generated in the target machine are displayed. We can search up every EventCode that appears in this field to see what each one of them means. The event that is relevant for this particular project is the EventCode of 4625. This EventCode indicates that "An account failed to log on" and as we can see in the EventCode field we have a couple of them since we ran the command for the Brute Force attack multiple times. Refer to image 62.
+In the left side of Splunk we have interesting fields that are related to the events generated in our target machine. We are going to be lookin for a field called "EventCode", here the code of every event generated in the target machine are displayed. We can search up every EventCode that appears in this field to see what each one of them represents. The event that is relevant for this particular project is the EventCode of 4625. This EventCode indicates that "An account failed to log on" and as we can see in the EventCode field we have a couple of them since we ran the command for the Brute Force attack multiple times. Refer to image 62.
 
 ![image](https://github.com/user-attachments/assets/35909709-c00b-400c-bebc-4eaff800d242)
 Image 62
@@ -499,66 +498,33 @@ Looking through the events we can see that each event was generated pretty mutch
 
 Moving onto the next EventCode we want to have a look at, we have the EventCode 4624 which is pretty similar to the one before. This EventCode means that "An account was successfully logged on". To look for the Events with the EventCode 4624 we can just edit the search by changing 4625 to 4624. Looking at the last event generated, we can click on the "Show all 70 lines" to see more about this event. 
 
-Reading through this Event we can see that the last Log on was made by a Workstation named kali and an IP of 192.168.10.250, this of course belongs to our Kali machine where we performed the attack. Refer to image 64.
+Reading through this Event we can see that the last Log on was made by a Workstation named **kali** and an IP of **192.168.10.250**, this of course belongs to our Kali machine where we performed the attack. Refer to image 64.
 
 ![image](https://github.com/user-attachments/assets/0a181e78-f941-4030-8cd8-29b663982583)
 Image 64
 
 
 
-4.4.-Installing & Using Atomic Red Team
+#### 4.4.-Installing & Using Atomic Red Team
 
 Finally we are going to be using Atomic Red Team to simulate more attacks to our Target Machine. Atomic Red Team is an open source library of tests designed to test security controls and it's mapped to the MITRE ATT&CK framework.
 
-Before we install Atomic Red Team, first we need to open PowerShell with admin privileges and then run the following command: "Set-ExecutionPolicy Bypass CurrentUser". Before we start with the installation we need to set an exclusion for the entire C: drive since Windows Defender can detect and remove the files made by Atomic Red Team. To do that we can search for "Virus & Threat protection" in the search bar. Once inside we want to click in the "Virus & threat protection" option again, then select "Manage settings", scroll down and under "Exclusions" we need to select "Add or remove exclusions". Then click on "Add an exclusion" and select Folder. On the "Select Folder" window we can just look for the C: drive and Select Folder. If everything went well we should see the C: folder. Refer to image 65.
+Before we install Atomic Red Team, first we need to open PowerShell with admin privileges and then run the following command: `Set-ExecutionPolicy Bypass CurrentUser`. Before we start with the installation we need to set an exclusion for the entire C: drive since Windows Defender can detect and remove the files made by Atomic Red Team. To do that we can search for "Virus & Threat protection" in the search bar. Once inside we want to click in the "Virus & threat protection" option again, then select "Manage settings", scroll down and under "Exclusions" we need to select "Add or remove exclusions". Then click on "Add an exclusion" and select Folder. On the "Select Folder" window we can just look for the C: drive and Select Folder. If everything went well we should see the C: folder as an exclusion. Refer to image 65.
 
 ![image](https://github.com/user-attachments/assets/6165fd94-2193-49fb-8714-50abc45f2be9)
 Image 65
 
 
-Now we can start Installing Atomic Red Team, to do that we need to run the following command: IEX (IWR  'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam -getAtomics.
+Now we can start Installing Atomic Red Team, to do that we need to run the following command: `IEX (IWR  'https://raw.githubusercontent.com/redcanaryco/invoke-atomicredteam/master/install-atomicredteam.ps1' -UseBasicParsing); Install-AtomicRedTeam -getAtomics`.
 
-Once Atomic Red Team is installed, we can go to our C: drive and look for a folder called "AtomicRedTeam". Inside that folder we have 2 more folder, "atomics" and "invoke-atomicredteam". In the "atomics" folder there would be all the techniques IDs and this go back to the MITTRE ATT&CK framework to which this is based from. 
+Once Atomic Red Team is installed, we can go to our C: drive and look for a folder called "AtomicRedTeam". Inside that folder we have 2 more folder, "atomics" and "invoke-atomicredteam". In the "atomics" folder there would be all the techniques IDs refering to the MITTRE ATT&CK framework to which this is based from. 
 
-For this example we are going to be using T1136.001 which is a tactic of Persistence where Adversaries may create a local account to maintain access to victim systems. To use the command we are going to run the following command: "Invoke-AtomicTest T1136.001". This command will simulate an event in where someone created a local account. Take a special look to the name of the user created for the simulation so that we can look for it later in Splunk. Refer to image 66.
+For this example we are going to be using **T1136.001** which is a tactic of *Persistence* where Adversaries may create a local account to maintain access to the systems of their victims. To use the command we are going to run the following command: `Invoke-AtomicTest T1136.001`. This command will simulate an event in where someone created a local account. Take a special look to the name of the user created for the simulation so that we can look for it later in Splunk. Refer to image 66.
 
 ![image](https://github.com/user-attachments/assets/342911c4-1278-41fa-828e-c6a57ad9dcdf)
 Image 66
 
-
 We can use Atomic Red Team to see what kinds of attack our machine can be subjected to, in case an event in Splunk is not generated then that tells us that we are vulnerable to that kind of attack and we need to create or add security to block such attacks from happening.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
